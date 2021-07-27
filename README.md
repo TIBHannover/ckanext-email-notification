@@ -44,13 +44,13 @@ To install ckanext-email-notification:
 
 ## Config settings
 
-This plugin checks the users (obtained via ckan API) creation date in the user table in database and sends e-mail to users who registered in the past 2 minutue. 
+This plugin checks the users (obtained via ckan API) creation date in the user table in ckan database and sends e-mail to users who registered in the past 2 minutue. 
 
 Therefore, you need to set a job in the system cronjob list to call this plugin every 2 minutues. For instance:
 
     */2 * * * *  curl -H "Authorization:YOUR_API_KEY" http://localhost:5000/email_notification/user_reg
 
-- *YOUR_API_KEY* is the ckan api key which you need create.
+- *YOUR_API_KEY* is the ckan api key which you need to create.
 - replace "http://localhost:5000/" with the target server. 
 
 **NOTE**: If you like to change the 2 minutes time interval, you can change it in "plugin.py", the variable "TIME_DELTA" (in seconds)
