@@ -13,8 +13,7 @@ class Helper():
             registration_delta = _time.now() - _time.strptime(user['created'], '%Y-%m-%dT%H:%M:%S.%f')
             if registration_delta.total_seconds() <= time_delta + 1:                
                 temp = {}
-                temp['name'] = user['name']
-                temp['fullname'] = user['fullname']
+                temp['name'] = user['name']                
                 temp['email'] = user['email']            
                 new_users.append(temp)
 
@@ -35,7 +34,7 @@ class Helper():
         body = "These users just registered in CKAN. Please add them to an organization and/or group. \n \n"
         for user in users_list:
             if user['fullname']:
-                body += ('Name:  ' + user['fullname'] + '\n')
+                body += ('Username:  ' + user['name'] + '\n')
             if user['email']:
                 body += ('Email:  ' + user['email'] + '\n')
                 body += '----------- \n'
