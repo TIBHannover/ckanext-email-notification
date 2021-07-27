@@ -14,7 +14,7 @@ def send_email_notification():
 
     sys_admins = Helper.get_sysadmins_email()
     subject = "New CKAN User"
-    body = Helper.create_email_body(new_users)
+    body = Helper.create_email_body(new_users)    
     for email in sys_admins:
         try:
             toolkit.mail_recipient('System Admin', email, subject, body)
