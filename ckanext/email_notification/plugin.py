@@ -11,7 +11,7 @@ def send_email_notification():
     new_users = Helper.get_new_users(TIME_DELTA)
     if len(new_users) == 0:
         return None
-        
+
     sys_admins = Helper.get_sysadmins_email()
     subject = "New CKAN User"
     body = Helper.create_email_body(new_users)

@@ -31,9 +31,13 @@ class Helper():
     
 
     def create_email_body(users_list):
-        body = "These users just registered in CKAN. Please add them to an organization and/or group. \n \n"
+        body = ""
+        print(toolkit.config.get('ckan.site_url'))
+        if 'test' in toolkit.config.get('ckan.site_url'):
+            body += '---------This is Test Server---------- \n \n'
+        body += "These users just registered in CKAN. Please add them to an organization and/or group. \n \n"
         for user in users_list:
-            if user['fullname']:
+            if user['name']:
                 body += ('Username:  ' + user['name'] + '\n')
             if user['email']:
                 body += ('Email:  ' + user['email'] + '\n')
