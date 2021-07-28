@@ -18,6 +18,14 @@ class Helper():
                 new_users.append(temp)
 
         return new_users
+
+    
+    def get_users_without_organization():
+        users = []
+        params = {'all_fields' : 'True', 'include_users': 'True'}
+        organizations = toolkit.get_action('organization_list')({},params)
+
+        return organizations
     
 
     def get_sysadmins_email():
