@@ -29,5 +29,12 @@ class EmailNotificationPlugin(plugins.SingletonPlugin):
             EmailController.send_email_notification,
             methods=['GET']
             )
+        
+        blueprint.add_url_rule(
+            u'/email_notification/reminder_email',
+            u'reminder_email',
+            EmailController.send_reminder_email,
+            methods=['GET']
+            )
 
         return blueprint
