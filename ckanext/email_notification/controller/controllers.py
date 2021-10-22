@@ -30,7 +30,7 @@ class EmailController():
     def send_reminder_email():
         usernames = Helper.get_users_without_organization()
         if len(usernames) == 0:
-            return None
+            return 'no oragnization-less user found.'
         
         sys_admins = Helper.get_sysadmins_email()
         subject = "Reminder: User without Organization"
