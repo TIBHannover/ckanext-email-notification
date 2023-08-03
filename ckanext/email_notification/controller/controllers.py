@@ -11,35 +11,41 @@ TIME_DELTA = 120
 class EmailController():
 
     def send_email_notification():
-        new_users = Helper.get_new_users(TIME_DELTA)
-        if len(new_users) == 0:
-            return 'no new user found.'
+        try:
+            new_users = Helper.get_new_users(TIME_DELTA)
+            if len(new_users) == 0:
+                return 'no new user found.'
 
-        sys_admins = Helper.get_sysadmins_email()
-        subject = "New CKAN User"
-        body = Helper.create_email_body(new_users)    
-        for email in sys_admins:
-            try:
-                toolkit.mail_recipient('System Admin', email, subject, body)
-            except:
-                continue
-        
-        return "True"
+            sys_admins = Helper.get_sysadmins_email()
+            subject = "New CKAN User"
+            body = Helper.create_email_body(new_users)    
+            for email in sys_admins:
+                try:
+                    toolkit.mail_recipient('System Admin', email, subject, body)
+                except:
+                    continue
+            
+            return "True"
+        except:
+            return "False"
     
 
     def send_reminder_email():
-        usernames = Helper.get_users_without_organization()
-        if len(usernames) == 0:
-            return 'no oragnization-less user found.'
-        
-        sys_admins = Helper.get_sysadmins_email()
-        subject = "Reminder: User without Organization"
-        body = Helper.create_email_body(usernames, is_reminder=True)    
-        for email in sys_admins:
-            try:
-                toolkit.mail_recipient('System Admin', email, subject, body)
-            except:
-                continue
-        
-        return "True"
+        try:
+            usernames = Helper.get_users_without_organization()
+            if len(usernames) == 0:
+                return 'no oragnization-less user found.'
+            
+            sys_admins = Helper.get_sysadmins_email()
+            subject = "Reminder: User without Organization"
+            body = Helper.create_email_body(usernames, is_reminder=True)    
+            for email in sys_admins:
+                try:
+                    toolkit.mail_recipient('System Admin', email, subject, body)
+                except:
+                    continue
+            
+            return "True"
+        except:
+            return "False"
                
